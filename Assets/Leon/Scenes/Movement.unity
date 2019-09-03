@@ -307,6 +307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b051f7db5a84904db460d89814a6ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothSpeed: 0.2
+  offset: {x: 0, y: 10, z: -10}
+  panLength: 5
   player: {fileID: 2073649370}
 --- !u!1 &2073649370 stripped
 GameObject:
