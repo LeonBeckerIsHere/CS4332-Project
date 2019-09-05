@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4714523361936975238}
   - component: {fileID: 4714523361936975237}
   - component: {fileID: 4714523361936975236}
-  - component: {fileID: 4714523361936975232}
   - component: {fileID: 4714523361936975243}
   - component: {fileID: 4714523361936975239}
   m_Layer: 0
@@ -82,22 +81,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4714523361936975232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4714523361936975242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fa7df69b6181a4d80c4650006babf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerDown: 0
-  bullet: {fileID: 0}
-  gun: {fileID: 4714523361936975238}
-  crossHair: {fileID: 0}
 --- !u!65 &4714523361936975243
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -127,6 +110,8 @@ MonoBehaviour:
   bullet: {fileID: 5878308134946178432, guid: 544f7ebfc74013c47b9a696ac8152bb8, type: 3}
   gun: {fileID: 4714523361936975238}
   crossHair: {fileID: 4714523361072642334}
+  delay: 0.1
+  ammo: 50
 --- !u!1001 &9070440712854163309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 4363416025713751671, guid: d4fd100dbd9ab0c49bdd8ccf2648890f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.7342076
+      value: 28.9
       objectReference: {fileID: 0}
     - target: {fileID: 4363416025713751671, guid: d4fd100dbd9ab0c49bdd8ccf2648890f,
         type: 3}
