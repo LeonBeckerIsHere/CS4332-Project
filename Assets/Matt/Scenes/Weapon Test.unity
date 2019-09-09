@@ -249,6 +249,7 @@ MonoBehaviour:
   bullet: {fileID: 5878308134946178432, guid: 544f7ebfc74013c47b9a696ac8152bb8, type: 3}
   gun: {fileID: 1308591866}
   crossHair: {fileID: 41212514}
+  delay: 0.04
 --- !u!114 &1308591868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +266,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   gun: {fileID: 1308591866}
   crossHair: {fileID: 0}
+  delay: 0.04
 --- !u!1001 &1539083524
 PrefabInstance:
   m_ObjectHideFlags: 0
