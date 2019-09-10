@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     private Vector3 moveDirection = Vector3.zero;
     private Vector2 lookDirection = Vector3.zero;
+    private Vector2 fromCenter = Vector3.zero;
     private bool lookChanged = false;
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,11 @@ public class Player : MonoBehaviour
     public Vector2 GetPlayerCoords2D()
     {
         return playerCoords2D;
+    }
+
+    public void SetFromCenter(Vector3 input)
+    {
+        fromCenter = input;
     }
 
     public void SetPlayerCoords2D(Vector2 pos)
@@ -49,7 +55,8 @@ public class Player : MonoBehaviour
     }
 
     public void Jump(){
-        moveDirection.y = jumpSpeed;
+        if(characterController.isGrounded)
+            moveDirection.y = jumpSpeed;
     }
 
 
@@ -59,7 +66,7 @@ public class Player : MonoBehaviour
     {
         if (lookChanged)
         {
-            this.transform.LookAt(new Vector3(transform.position.x+lookDirection.x,transform.position.y,transform.position.z+lookDirection.y));
+            this.transform.LookAt(new Vector3(transform.position.x+fromCenter.x,transform.position.y,transform.position.z+fromCenter.y));
             lookChanged = false;
         }
 
@@ -70,8 +77,8 @@ public class Player : MonoBehaviour
             moveDirection *= speed;
 
         }
-        else
-            moveDirection.y -= gravity * Time.deltaTime;
+        
+        moveDirection.y -= gravity * Time.deltaTime;
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
