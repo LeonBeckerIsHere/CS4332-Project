@@ -11,22 +11,19 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     float panLength =5.0f;
     public GameObject player;
+    Player playerInfo;
     Camera cam;
-    Vector3 playerCoords2D;
     //This is the vector distance the camera maintains from the player at all times
     
-    float mouseXNormalized;
-    float mouseYNormalized;
-    Vector3 cursorDistance;
+
     void Start(){
+        playerInfo = player.GetComponent<Player>();
         cam = GetComponent<Camera>();
 
         //Setup the camera
         gameObject.transform.rotation = new Quaternion(0.0f,0.0f,0.0f,1.0f);
         gameObject.transform.Rotate(new Vector3(1.0f,0.0f,0.0f),53.13f);
         gameObject.transform.position = player.transform.position+offset;
-
-        playerCoords2D = cam.WorldToScreenPoint(player.transform.position);
     }
 
     void repositionCameraOnPlayer(){
@@ -34,15 +31,6 @@ public class CameraFollow : MonoBehaviour
         Vector3 desiredPosition = player.transform.position + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
         transform.position = smoothedPosition;
-    }
-
-    void getNormalizedMouseCoordinates(){
-        //TODO: refactor this section to be apart of a player input script
-        //Get cursor distance from the player and normalize it
-        cursorDistance = Input.mousePosition - playerCoords2D;
-
-        mouseXNormalized = 2 * cursorDistance.x / Screen.width;
-        mouseYNormalized = 2 * cursorDistance.y / Screen.height;
     }
 
     void panCamera(float screenX, float screenY){
@@ -53,9 +41,7 @@ public class CameraFollow : MonoBehaviour
     private void FixedUpdate(){
         repositionCameraOnPlayer();
 
-        getNormalizedMouseCoordinates();
-
         //TODO: use the normalized cursor distance to move the camera in the direction vector of the cursor from the player
-        panCamera(mouseXNormalized, mouseYNormalized);
+        panCamera(playerInfo.GetLookDirection().x, playerInfo.GetLookDirection().y);
     }
 }

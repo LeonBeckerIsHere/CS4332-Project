@@ -11,31 +11,73 @@ public class Player : MonoBehaviour
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
 
+    Vector2 playerCoords2D = Vector2.zero; 
+
     private Vector3 moveDirection = Vector3.zero;
+    private Vector2 lookDirection = Vector3.zero;
+    private Vector2 fromCenter = Vector3.zero;
+    private bool lookChanged = false;
     // Start is called before the first frame update
-    void Start(){
+    void Start()
+    {
         characterController = GetComponent<CharacterController>();
     }
 
+    public Vector2 GetLookDirection()
+    {
+        return lookDirection;
+    }
+
+    public Vector2 GetPlayerCoords2D()
+    {
+        return playerCoords2D;
+    }
+
+    public void SetFromCenter(Vector3 input)
+    {
+        fromCenter = input;
+    }
+
+    public void SetPlayerCoords2D(Vector2 pos)
+    {
+        playerCoords2D = pos;
+    }
+
+    public void SetMoveDirection(Vector3 input){
+        moveDirection = input;
+    }
+
+    public void SetLookDirection(Vector2 input)
+    {
+        Vector2 cursorDistance = input - playerCoords2D;
+        lookDirection = new Vector2(2 * cursorDistance.x / Screen.width, 2 * cursorDistance.y / Screen.height);
+        lookChanged = true;
+    }
+
+    public void Jump(){
+        if(characterController.isGrounded)
+            moveDirection.y = jumpSpeed;
+    }
+
+
+
     // Update is called once per frame
-    void Update(){
+    void Update()
+    {
+        if (lookChanged)
+        {
+            this.transform.LookAt(new Vector3(transform.position.x+fromCenter.x,transform.position.y,transform.position.z+fromCenter.y));
+            lookChanged = false;
+        }
+
         if (characterController.isGrounded)
         {
             // We are grounded, so recalculate
             // move direction directly from axes
-
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
             moveDirection *= speed;
 
-            if (Input.GetButton("Jump"))
-            {
-                moveDirection.y = jumpSpeed;
-            }
         }
-
-        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-        // as an acceleration (ms^-2)
+        
         moveDirection.y -= gravity * Time.deltaTime;
 
         // Move the controller
