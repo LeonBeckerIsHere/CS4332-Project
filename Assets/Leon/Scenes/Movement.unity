@@ -453,20 +453,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9043388500572854266, guid: e30c91ad82db020478cec5358e81cc6d,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1104516204419444531, guid: e30c91ad82db020478cec5358e81cc6d,
         type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 2149729202745997674, guid: e30c91ad82db020478cec5358e81cc6d,
-        type: 3}
-      propertyPath: movementSpeed
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e30c91ad82db020478cec5358e81cc6d, type: 3}
